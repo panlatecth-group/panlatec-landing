@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panlatec - โซลูชันเทคโนโลยีอัจฉริยะเพื่อขับเคลื่อนธุรกิจสู่อนาคต</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Kanit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0B0F19',
+                            card: '#111827',
+                            accent: '#06B6D4', // Cyan
+                            primary: '#3B82F6', // Blue
+                            purple: '#8B5CF6',
+                            neon: '#00F0FF'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Kanit', 'Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0.0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-12px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Kanit', 'Inter', sans-serif;
+            background-color: #0B0F19;
+            color: #F3F4F6;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism effects */
+        .glass-card {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card-hover:hover {
+            border-color: rgba(6, 182, 212, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px -10px rgba(6, 182, 212, 0.15);
+        }
+
+        .glow-text {
+            text-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+        }
+
+        .glow-bg {
+            background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.15) 0%, rgba(6, 182, 212, 0.05) 50%, transparent 80%);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0F19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1E293B;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #06B6D4;
+        }
+
+        /* Range slider styling */
+        input[type=range] {
+            accent-color: #06B6D4;
+        }
+    </style>
+</head>
+<body class="bg-brand-dark text-slate-100 antialiased selection:bg-brand-accent selection:text-black">
+
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-accent via-brand-primary to-brand-purple p-0.5 flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:shadow-cyan-500/40 transition-all">
+                        <div class="w-full h-full bg-brand-dark rounded-[10px] flex items-center justify-center">
+                            <i class="fa-solid font-bold text-xl text-brand-accent fa-microchip"></i>
+                        </div>
+                    </div>
+                    <span class="text-2xl font-bold bg-gradient-to-r from-white via-slate-200 to-brand-accent bg-clip-text text-transparent tracking-tight">
+                        PANLATEC
+                    </span>
+                </a>
+
+                <!-- Desktop Navigation Menu -->
+                <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+                    <a href="#hero" class="text-slate-300 hover:text-brand-accent transition-colors">หน้าแรก</a>
+                    <a href="#solutions" class="text-slate-300 hover:text-brand-accent transition-colors">ทางออกธุรกิจ</a>
+                    <a href="#services" class="text-slate-300 hover:text-brand-accent transition-colors">บริการของเรา</a>
+                    <a href="#calculator" class="text-slate-300 hover:text-brand-accent transition-colors">คำนวณความคุ้มค่า</a>
+                    <a href="#why-us" class="text-slate-300 hover:text-brand-accent transition-colors">ทำไมต้อง Panlatec</a>
+                    <a href="#testimonials" class="text-slate-300 hover:text-brand-accent transition-colors">เสียงจากลูกค้า</a>
+                </nav>
+
+                <!-- Desktop CTA Button -->
+                <div class="hidden md:flex items-center gap-4">
+                    <a href="#contact" class="relative inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-white transition-all bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full shadow-md shadow-cyan-500/20 hover:shadow-lg hover:shadow-cyan-500/40 hover:scale-[1.02] active:scale-95">
+                        <span>ปรึกษาฟรี</span>
+                        <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- Mobile Hamburger Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white p-2 focus:outline-none" aria-label="Toggle Navigation">
+                    <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass-card border-t border-slate-800 px-4 pt-4 pb-6 space-y-3">
+            <a href="#hero" class="mobile-link block px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-brand-accent">หน้าแรก</a>
+            <a href="#solutions" class="mobile-link block px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-brand-accent">ทางออกธุรกิจ</a>
+            <a href="#services" class="mobile-link block px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-brand-accent">บริการของเรา</a>
+            <a href="#calculator" class="mobile-link block px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-brand-accent">คำนวณความคุ้มค่า</a>
+            <a href="#why-us" class="mobile-link block px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-brand-accent">ทำไมต้อง Panlatec</a>
+            <a href="#testimonials" class="mobile-link block px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800 hover:text-brand-accent">เสียงจากลูกค้า</a>
+            <a href="#contact" class="mobile-link block text-center mt-4 w-full px-6 py-3 text-sm font-semibold text-white bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl shadow-md">
+                ปรึกษาฟรี
+            </a>
+        </div>
+    </header>
+
+    <section id="hero" class="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden glow-bg">
+        <!-- Background Decorative Orbs -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-cyan-500/10 to-purple-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                <!-- Left Content Column -->
+                <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-card border border-cyan-500/30 text-brand-accent text-xs sm:text-sm font-medium animate-pulse-slow">
+                        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+                        <span>ผู้นำโซลูชันนวัตกรรมดิจิทัลสำหรับองค์กร</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.2]">
+                        ขับเคลื่อนธุรกิจสู่อนาคต <br class="hidden sm:inline">
+                        ด้วยโซลูชันเทคโนโลยีอัจฉริยะจาก <span class="bg-gradient-to-r from-brand-accent via-brand-primary to-purple-400 bg-clip-text text-transparent glow-text">Panlatec</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+                        ยกระดับประสิทธิภาพการทำงาน เพิ่มขีดความสามารถในการแข่งขัน ด้วยซอฟต์แวร์ ระบบอัตโนมัติ และนวัตกรรมดิจิทัลที่ออกแบบมาเพื่อตอบโจทย์องค์กรคุณโดยเฉพาะ
+                    </p>
+
+                    <!-- CTA Group -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#contact" class="w-full sm:w-auto px-8 py-4 text-base font-semibold text-black bg-gradient-to-r from-cyan-400 to-cyan-300 hover:from-cyan-300 hover:to-cyan-200 rounded-xl shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 transition-all text-center hover:scale-105 active:scale-95">
+                            ลงทะเบียนรับปรึกษาฟรี <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </a>
+                        <a href="#services" class="w-full sm:w-auto px-8 py-4 text-base font-semibold text-slate-200 glass-card hover:bg-slate-800/80 rounded-xl transition-all border border-slate-700 hover:border-slate-500 text-center">
+                            <i class="fa-regular fa-compass mr-2 text-brand-accent"></i> ดูโซลูชันของเรา
+                        </a>
+                    </div>
+
+                    <!-- Trust Stats Mini-Badge -->
+                    <div class="pt-8 border-t border-slate-800/80 grid grid-cols-3 gap-4 text-center lg:text-left">
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-bold text-white">100+</div>
+                            <div class="text-xs sm:text-sm text-slate-400">โครงการสำเร็จ</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-bold text-brand-accent">99.9%</div>
+                            <div class="text-xs sm:text-sm text-slate-400">System Uptime</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-bold text-white">95%</div>
+                            <div class="text-xs sm:text-sm text-slate-400">ความพึงพอใจสูงสูด</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Visual Column (Interactive Tech Dashboard Preview) -->
+                <div class="lg:col-span-5 relative">
+                    <div class="animate-float relative z-10">
+                        <div class="glass-card rounded-2xl p-5 border border-slate-700/60 shadow-2xl shadow-cyan-950/50">
+                            <!-- Dashboard Header Frame -->
+                            <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+                                    <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+                                    <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
+                                </div>
+                                <div class="text-xs font-mono text-slate-400 bg-slate-900/80 px-3 py-1 rounded-md border border-slate-800">
+                                    panlatec-core-v3.5.exe
+                                </div>
+                            </div>
+
+                            <!-- Dashboard Stats Display -->
+                            <div class="mt-4 space-y-4">
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div class="bg-slate-900/90 p-3.5 rounded-xl border border-slate-800">
+                                        <div class="text-xs text-slate-400 flex items-center justify-between">
+                                            <span>Task Automation</span>
+                                            <i class="fa-solid fa-bolt text-amber-400"></i>
+                                        </div>
+                                        <div class="text-xl font-bold text-cyan-400 mt-1">+84.2%</div>
+                                        <div class="text-[10px] text-green-400 mt-0.5">↑ ประสิทธิภาพสูงขึ้น</div>
+                                    </div>
+                                    <div class="bg-slate-900/90 p-3.5 rounded-xl border border-slate-800">
+                                        <div class="text-xs text-slate-400 flex items-center justify-between">
+                                            <span>Error Reduction</span>
+                                            <i class="fa-solid fa-shield-halved text-brand-primary"></i>
+                                        </div>
+                                        <div class="text-xl font-bold text-indigo-400 mt-1">-92.5%</div>
+                                        <div class="text-[10px] text-cyan-400 mt-0.5">↓ ลดข้อผิดพลาด</div>
+                                    </div>
+                                </div>
+
+                                <!-- Animated Graph Simulation -->
+                                <div class="bg-slate-900/90 p-4 rounded-xl border border-slate-800 space-y-2">
+                                    <div class="flex justify-between items-center text-xs">
+                                        <span class="text-slate-300 font-medium">Real-time Performance Analytics</span>
+                                        <span class="text-cyan-400 font-mono">LIVE</span>
+                                    </div>
+                                    <div class="h-28 flex items-end justify-between gap-1.5 pt-2">
+                                        <div class="w-full bg-slate-800 rounded-t h-[40%] group relative">
+                                            <div class="bg-gradient-to-t from-cyan-600 to-cyan-400 w-full h-[60%] rounded-t transition-all duration-500"></div>
+                                        </div>
+                                        <div class="w-full bg-slate-800 rounded-t h-[60%] group relative">
+                                            <div class="bg-gradient-to-t from-cyan-600 to-cyan-400 w-full h-[80%] rounded-t transition-all duration-500"></div>
+                                        </div>
+                                        <div class="w-full bg-slate-800 rounded-t h-[55%] group relative">
+                                            <div class="bg-gradient-to-t from-cyan-600 to-cyan-400 w-full h-[70%] rounded-t transition-all duration-500"></div>
+                                        </div>
+                                        <div class="w-full bg-slate-800 rounded-t h-[80%] group relative">
+                                            <div class="bg-gradient-to-t from-cyan-600 to-cyan-400 w-full h-[90%] rounded-t transition-all duration-500"></div>
+                                        </div>
+                                        <div class="w-full bg-slate-800 rounded-t h-[95%] group relative">
+                                            <div class="bg-gradient-to-t from-cyan-500 to-emerald-400 w-full h-[100%] rounded-t shadow-lg shadow-cyan-500/50"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Floating Badge -->
+                                <div class="p-3 bg-cyan-950/40 border border-cyan-500/30 rounded-xl flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-lg bg-cyan-500/20 flex items-center justify-center text-cyan-400">
+                                            <i class="fa-solid fa-lock text-sm"></i>
+                                        </div>
+                                        <div class="text-xs">
+                                            <div class="font-medium text-white">Enterprise Security Grade</div>
+                                            <div class="text-slate-400">AES-256 Encryption Active</div>
+                                        </div>
+                                    </div>
+                                    <span class="text-[10px] bg-emerald-500/20 text-emerald-300 font-medium px-2 py-1 rounded">Protected</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="solutions" class="py-20 relative bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs sm:text-sm font-semibold tracking-widest text-brand-accent uppercase mb-2">PROBLEM & SOLUTION</h2>
+                <p class="text-2xl sm:text-4xl font-bold text-white">
+                    คุณกำลังเผชิญอุปสรรคเหล่านี้ในการดำเนินธุรกิจอยู่หรือไม่?
+                </p>
+                <p class="mt-4 text-slate-400 text-base">
+                    Panlatec เข้ามาเปลี่ยนทุกข้อจำกัดและอุปสรรคเดิมๆ ให้กลายเป็นความได้เปรียบทางการแข่งขัน
+                </p>
+            </div>
+
+            <!-- Comparison Grid -->
+            <div class="grid lg:grid-cols-2 gap-8 items-stretch">
+                <!-- Pain Points Box -->
+                <div class="glass-card rounded-2xl p-6 sm:p-8 border-red-500/20 relative overflow-hidden bg-gradient-to-b from-red-950/10 to-transparent">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-xl bg-red-500/10 text-red-400 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-red-200">ปัญหาที่ธุรกิจยุคเดิมต้องพบเจอ</h3>
+                    </div>
+
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-xmark text-red-400 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-slate-200">กระบวนการทำงานซ้ำซ้อน ล่าช้า</h4>
+                                <p class="text-sm text-slate-400">พนักงานใช้เวลาส่วนใหญ่ไปกับงาน Manual รูทีนที่ไม่ก่อให้เกิดมูลค่าเพิ่ม</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-xmark text-red-400 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-slate-200">ข้อมูลกระจัดกระจาย บริหารยาก</h4>
+                                <p class="text-sm text-slate-400">ขาด Dashboard รวมศูนย์ ข้อมูลแยกส่วนกันในแต่ละแผนก ตัดสินใจช้า</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-xmark text-red-400 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-slate-200">ข้อผิดพลาดจากมนุษย์ (Human Error)</h4>
+                                <p class="text-sm text-slate-400">ป้อนข้อมูลผิดพลาด บัญชีไม่ตรง สูญเสียโอกาสและต้นทุนทางธุรกิจ</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-xmark text-red-400 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-slate-200">ระบบเดิมขยายขีดความสามารถไม่ได้</h4>
+                                <p class="text-sm text-slate-400">ซอฟต์แวร์เก่าล้าสมัย ไม่สามารถเชื่อมต่อกับเทคโนโลยีหรือ API ใหม่ๆ ได้</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Panlatec Solution Box -->
+                <div class="glass-card rounded-2xl p-6 sm:p-8 border-cyan-500/30 relative overflow-hidden bg-gradient-to-b from-cyan-950/20 to-transparent shadow-xl shadow-cyan-950/30">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-brand-accent flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-cyan-200">ทางออกด้วยโซลูชัน Panlatec</h3>
+                    </div>
+
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-cyan-400 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-white">Smart Automation อัตโนมัติไร้รอยต่อ</h4>
+                                <p class="text-sm text-slate-300">เปลี่ยนงานเอกสารและกระบวนการซ้ำๆ ให้เป็นระบบอัตโนมัติ 100% ประหยัดเวลา 80%</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-cyan-400 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-white">Real-time Data & Executive Dashboard</h4>
+                                <p class="text-sm text-slate-300">รวมศูนย์ข้อมูลทุกฝ่าย วิเคราะห์ผลลัพธ์แบบเรียลไทม์ผ่านแดชบอร์ดอัจฉริยะ</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-cyan-400 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-white">ความแม่นยำสูงและปลอดภัยระดับมาตรฐานสากล</h4>
+                                <p class="text-sm text-slate-300">ประมวลผลด้วยอัลกอริทึมความแม่นยำสูง พร้อมระบบรักษาความปลอดภัยข้อมูลรัดกุม</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-cyan-400 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-white">Scalable & Custom Architecture</h4>
+                                <p class="text-sm text-slate-300">สถาปัตยกรรมซอฟต์แวร์ยืดหยุ่นสูง รองรับการเติบโตและปรับแต่งได้ตามความต้องการ</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-20 bg-slate-950/60 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs sm:text-sm font-semibold tracking-widest text-brand-accent uppercase mb-2">OUR SERVICES</h2>
+                <p class="text-2xl sm:text-4xl font-bold text-white">บริการและโซลูชันหลักของ Panlatec</p>
+                <p class="mt-4 text-slate-400">ครอบคลุมทุกมิติของการยกระดับธุรกิจด้วยเทคโนโลยีชั้นนำ</p>
+            </div>
+
+            <!-- Services Cards Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Service Card 1 -->
+                <div class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between cursor-pointer group" onclick="openModal('service1')">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">Smart Automation System</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed">
+                            พัฒนาระบบทำงานอัตโนมัติ เชื่อมต่อ Workflow การทำงานภายในองค์กร ลดภาระงานเอกสาร
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between text-xs font-medium text-cyan-400">
+                        <span>ดูรายละเอียด</span>
+                        <i class="fa-solid fa-chevron-right group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between cursor-pointer group" onclick="openModal('service2')">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-chart-pie"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-blue-300 transition-colors">Data & Analytics Dashboard</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed">
+                            สร้าง แดชบอร์ดผู้บริหาร วิเคราะห์ข้อมูลธุรกิจเชิงลึก แสดงผลกราฟแบบ Real-time เพิ่มความแม่นยำ
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between text-xs font-medium text-blue-400">
+                        <span>ดูรายละเอียด</span>
+                        <i class="fa-solid fa-chevron-right group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between cursor-pointer group" onclick="openModal('service3')">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-purple-300 transition-colors">Custom Software Development</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed">
+                            ออกแบบและพัฒนาเว็บแอปพลิเคชัน/โมบายแอปเฉพาะทาง ตอบโจทย์ความต้องการธุรกิจของคุณ 100%
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between text-xs font-medium text-purple-400">
+                        <span>ดูรายละเอียด</span>
+                        <i class="fa-solid fa-chevron-right group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </div>
+
+                <!-- Service Card 4 -->
+                <div class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between cursor-pointer group" onclick="openModal('service4')">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors">Seamless Integration & Security</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed">
+                            เชื่อมต่อระบบเดิมเข้ากับ API ใหม่ พร้อมยกระดับความปลอดภัยทางไซเบอร์และการจัดการข้อมูล
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between text-xs font-medium text-emerald-400">
+                        <span>ดูรายละเอียด</span>
+                        <i class="fa-solid fa-chevron-right group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="calculator" class="py-20 bg-brand-dark relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card rounded-3xl p-6 sm:p-10 border border-cyan-500/30 relative overflow-hidden">
+                <div class="absolute -top-24 -right-24 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                    <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-semibold uppercase tracking-wider">
+                        Interactive Calculator
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mt-3">
+                        คำนวณประเมินผลตอบแทนและความคุ้มค่า (ROI)
+                    </h2>
+                    <p class="text-slate-400 text-sm mt-2">
+                        ลองปรับพารามิเตอร์ด้านล่าง เพื่อดูจำนวนเวลาและค่าใช้จ่ายที่องค์กรของคุณประหยัดได้ด้วย Panlatec
+                    </p>
+                </div>
+
+                <div class="grid lg:grid-cols-12 gap-8 items-center">
+                    <!-- Controls Column -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <!-- Control 1 -->
+                        <div>
+                            <div class="flex justify-between text-sm font-medium mb-2">
+                                <label class="text-slate-300">จำนวนพนักงานในทีม (คน):</label>
+                                <span class="text-brand-accent font-bold text-base" id="employee-count-val">20</span>
+                            </div>
+                            <input type="range" id="employee-count" min="5" max="200" value="20" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer">
+                        </div>
+
+                        <!-- Control 2 -->
+                        <div>
+                            <div class="flex justify-between text-sm font-medium mb-2">
+                                <label class="text-slate-300">ชั่วโมงงาน Manual / พนักงาน / สัปดาห์:</label>
+                                <span class="text-brand-accent font-bold text-base" id="hours-val">12</span>
+                            </div>
+                            <input type="range" id="hours" min="2" max="30" value="12" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer">
+                        </div>
+
+                        <!-- Control 3 -->
+                        <div>
+                            <div class="flex justify-between text-sm font-medium mb-2">
+                                <label class="text-slate-300">ค่าเฉลี่ยเงินเดือนพนักงาน (บาท/เดือน):</label>
+                                <span class="text-brand-accent font-bold text-base" id="salary-val">35,000</span>
+                            </div>
+                            <input type="range" id="salary" min="18000" max="100000" step="1000" value="35000" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer">
+                        </div>
+                    </div>
+
+                    <!-- Calculated Results Column -->
+                    <div class="lg:col-span-5 bg-slate-900/90 rounded-2xl p-6 border border-slate-800 text-center space-y-4">
+                        <div class="text-xs text-slate-400 uppercase tracking-wider font-medium">ผลลัพธ์ประมาณการประหยัด</div>
+                        
+                        <div class="py-2 border-b border-slate-800">
+                            <div class="text-sm text-slate-400">ประหยัดเวลาการทำงานรวม</div>
+                            <div class="text-3xl font-extrabold text-cyan-400 mt-1" id="saved-hours-result">9,600</div>
+                            <div class="text-xs text-slate-400 mt-0.5">ชั่วโมง / ปี</div>
+                        </div>
+
+                        <div class="py-2">
+                            <div class="text-sm text-slate-400">ประหยัดต้นทุนค่าแรงประมาณ</div>
+                            <div class="text-3xl font-extrabold text-emerald-400 mt-1" id="saved-cost-result">฿2,016,000</div>
+                            <div class="text-xs text-slate-400 mt-0.5">บาท / ปี</div>
+                        </div>
+
+                        <a href="#contact" class="block w-full py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold text-sm rounded-xl hover:opacity-90 transition-opacity">
+                            เริ่มรับแผนประหยัดต้นทุนของคุณ
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-us" class="py-20 bg-slate-950/40 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="text-xs sm:text-sm font-semibold tracking-widest text-brand-accent uppercase">WHY CHOOSE PANLATEC</span>
+                    <h2 class="text-2xl sm:text-4xl font-bold text-white leading-tight">
+                        พันธมิตรทางเทคโนโลยี ที่พร้อมเติบโตไปกับธุรกิจของคุณ
+                    </h2>
+                    <p class="text-slate-300 text-base leading-relaxed">
+                        เราไม่ได้เป็นเพียงผู้พัฒนาระบบ แต่เราคือที่ปรึกษาเชิงยุทธศาสตร์ดิจิทัลที่มุ่งเน้นการสร้างผลลัพธ์ที่วัดผลได้จริง (Measurable ROI) สำหรับทุกองค์กร
+                    </p>
+
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0 mt-1">
+                                <i class="fa-solid fa-user-gear"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-white">ทีมงานเชี่ยวชาญเฉพาะทาง</h3>
+                                <p class="text-sm text-slate-400">ซอฟต์แวร์วิศวกร และ Data Specialists ที่มีประสบการณ์ดูแลโครงการระดับ Enterprise</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0 mt-1">
+                                <i class="fa-solid fa-headset"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-white">ดูแลอย่างใกล้ชิดตลอด 24/7</h3>
+                                <p class="text-sm text-slate-400">มีทีมซัพพอร์ตคอยดูแลรักษาระบบและให้คำปรึกษาตลอดการใช้งานโดยไม่มีวันหยุด</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0 mt-1">
+                                <i class="fa-solid fa-sliders"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-white">ออกแบบ Tailor-made ชนิด 100%</h3>
+                                <p class="text-sm text-slate-400">ทุกฟีเจอร์ได้รับการพัฒนาตามกระบวนการทำงานจริง ไม่บังคับให้คุณเปลี่ยนวิธีทำงานเดิม</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6 grid grid-cols-2 gap-4">
+                    <div class="glass-card p-6 rounded-2xl text-center space-y-2 border-slate-800 hover:border-cyan-500/40 transition-colors">
+                        <i class="fa-solid fa-rocket text-3xl text-cyan-400 mb-2"></i>
+                        <div class="text-3xl sm:text-4xl font-extrabold text-white counter" data-target="120">0</div>
+                        <div class="text-sm text-slate-400">โปรเจกต์ที่ส่งมอบแล้ว</div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl text-center space-y-2 border-slate-800 hover:border-cyan-500/40 transition-colors">
+                        <i class="fa-solid fa-face-smile text-3xl text-emerald-400 mb-2"></i>
+                        <div class="text-3xl sm:text-4xl font-extrabold text-white counter" data-target="98">0</div>
+                        <div class="text-sm text-slate-400">% ลูกค้าพึงพอใจและบอกต่อ</div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl text-center space-y-2 border-slate-800 hover:border-cyan-500/40 transition-colors">
+                        <i class="fa-solid fa-clock-rotate-left text-3xl text-purple-400 mb-2"></i>
+                        <div class="text-3xl sm:text-4xl font-extrabold text-white">99.9%</div>
+                        <div class="text-sm text-slate-400">Uptime Stability</div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl text-center space-y-2 border-slate-800 hover:border-cyan-500/40 transition-colors">
+                        <i class="fa-solid fa-award text-3xl text-amber-400 mb-2"></i>
+                        <div class="text-3xl sm:text-4xl font-extrabold text-white">10+</div>
+                        <div class="text-sm text-slate-400">ปีประสบการณ์ในอุตสาหกรรม</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="py-20 bg-brand-dark relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs sm:text-sm font-semibold tracking-widest text-brand-accent uppercase mb-2">TESTIMONIALS</h2>
+                <p class="text-2xl sm:text-4xl font-bold text-white">เสียงตอบรับจากองค์กรชั้นนำที่ไว้วางใจ</p>
+            </div>
+
+            <!-- Client Logos Banner -->
+            <div class="mb-16 py-6 border-y border-slate-800/80 flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-70">
+                <span class="text-xl font-bold tracking-wider text-slate-400 hover:text-cyan-400 transition-colors"><i class="fa-solid fa-building mr-2"></i>NEXUS CORP</span>
+                <span class="text-xl font-bold tracking-wider text-slate-400 hover:text-cyan-400 transition-colors"><i class="fa-solid fa-globe mr-2"></i>GLOBALTECH</span>
+                <span class="text-xl font-bold tracking-wider text-slate-400 hover:text-cyan-400 transition-colors"><i class="fa-solid fa-cube mr-2"></i>INNOVATE THAI</span>
+                <span class="text-xl font-bold tracking-wider text-slate-400 hover:text-cyan-400 transition-colors"><i class="fa-solid fa-layer-group mr-2"></i>APEX SOLUTIONS</span>
+            </div>
+
+            <!-- Testimonials Grid -->
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex text-amber-400 text-sm gap-1">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-300 text-sm italic leading-relaxed">
+                            "Panlatec ช่วยเปลี่ยนระบบงานเอกสารในโรงงานของเราให้เป็นดิจิทัลทั้งหมด เวลาที่เคยเสียไปกับการคีย์ข้อมูลลดลงกว่า 70% พนักงานทำงานง่ายขึ้นเยอะมากครับ"
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center font-bold text-white text-sm">
+                            สม
+                        </div>
+                        <div>
+                            <div class="text-sm font-semibold text-white">คุณสมชาย วงศ์สวัสดิ์</div>
+                            <div class="text-xs text-slate-400">COO, Nexus Manufacturing</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex text-amber-400 text-sm gap-1">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-300 text-sm italic leading-relaxed">
+                            "Dashboard ผู้บริหารที่ Panlatec พัฒนาให้ ทำให้ผมเห็นภาพรวมยอดขายและคลังสินค้าได้แบบ Real-time บนมือถือ ช่วยให้ตัดสินใจขยายสาขาได้อย่างแม่นยำ"
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-500 to-pink-600 flex items-center justify-center font-bold text-white text-sm">
+                            วิ
+                        </div>
+                        <div>
+                            <div class="text-sm font-semibold text-white">คุณวิภาดา รัตนกุล</div>
+                            <div class="text-xs text-slate-400">Managing Director, Retail Group</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-6 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex text-amber-400 text-sm gap-1">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-300 text-sm italic leading-relaxed">
+                            "ประทับใจทีมงานมากครับ ให้คำปรึกษาตรงจุด ไม่ยัดเยียดฟีเจอร์ที่ไม่จำเป็น ซัพพอร์ตหลังการขายดีเยี่ยม ตอบแชทเร็วและแก้ไขปัญหาได้ทันที"
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800 flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-600 flex items-center justify-center font-bold text-white text-sm">
+                            กิ
+                        </div>
+                        <div>
+                            <div class="text-sm font-semibold text-white">คุณกิตติศักดิ์ เมธา</div>
+                            <div class="text-xs text-slate-400">CTO, FinTech Startup</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 bg-slate-950/80 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card rounded-3xl p-8 sm:p-12 border border-slate-700 shadow-2xl relative">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                    <span class="text-xs font-semibold tracking-widest text-brand-accent uppercase">GET IN TOUCH</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mt-2">พร้อมยกระดับธุรกิจของคุณแล้วหรือยัง?</h2>
+                    <p class="text-slate-400 text-sm mt-2">กรอกข้อมูลเพื่อให้ผู้เชี่ยวชาญจาก Panlatec ติดต่อกลับเพื่อประเมินโซลูชันฟรีภายใน 24 ชั่วโมง</p>
+                </div>
+
+                <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-300 uppercase mb-2">ชื่อ - นามสกุล <span class="text-red-400">*</span></label>
+                            <input type="text" id="fullname" required placeholder="เช่น สมชาย ใจดี" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all text-sm">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-medium text-slate-300 uppercase mb-2">ชื่อบริษัท / องค์กร</label>
+                            <input type="text" id="company" placeholder="เช่น บริษัท ตัวอย่าง จำกัด" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all text-sm">
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-300 uppercase mb-2">อีเมลติดต่อ <span class="text-red-400">*</span></label>
+                            <input type="email" id="email" required placeholder="name@company.com" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all text-sm">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-medium text-slate-300 uppercase mb-2">เบอร์โทรศัพท์ <span class="text-red-400">*</span></label>
+                            <input type="tel" id="phone" required placeholder="081-XXX-XXXX" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all text-sm">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 uppercase mb-2">โซลูชันที่คุณสนใจ</label>
+                        <select id="service-type" class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all text-sm">
+                            <option value="automation">Smart Automation System</option>
+                            <option value="dashboard">Data & Analytics Dashboard</option>
+                            <option value="custom">Custom Software Development</option>
+                            <option value="integration">Seamless Integration & Security</option>
+                            <option value="consult">ปรึกษาภาพรวมเทคโนโลยี</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-medium text-slate-300 uppercase mb-2">รายละเอียดเพิ่มเติม / โจทย์ธุรกิจ</label>
+                        <textarea id="message" rows="4" placeholder="อธิบายสั้นๆ เกี่ยวกับระบบที่คุณต้องการพัฒนา..." class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all text-sm"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-4 bg-gradient-to-r from-cyan-400 to-blue-600 hover:from-cyan-300 hover:to-blue-500 text-black font-bold text-base rounded-xl shadow-lg shadow-cyan-500/25 transition-all transform hover:scale-[1.01] active:scale-95 flex items-center justify-center gap-2">
+                        <span>ส่งข้อมูลเพื่อรับสิทธิ์คำปรึกษาฟรี</span>
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-brand-dark border-t border-slate-800 text-slate-400 text-sm py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <!-- Col 1: Brand Info -->
+                <div class="space-y-4 md:col-span-1">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-brand-accent to-brand-primary p-0.5 flex items-center justify-center">
+                            <div class="w-full h-full bg-brand-dark rounded-md flex items-center justify-center">
+                                <i class="fa-solid fa-microchip text-brand-accent text-sm"></i>
+                            </div>
+                        </div>
+                        <span class="text-xl font-bold text-white">PANLATEC</span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        โซลูชันนวัตกรรมดิจิทัล ยกระดับประสิทธิภาพการทำงาน ขับเคลื่อนองค์กรสู่อนาคตด้วยเทคโนโลยีอัจฉริยะ
+                    </p>
+                </div>
+
+                <!-- Col 2: Quick Links -->
+                <div>
+                    <h4 class="text-white font-semibold mb-3 text-xs uppercase tracking-wider">ลิงก์ด่วน</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#hero" class="hover:text-brand-accent transition-colors">หน้าแรก</a></li>
+                        <li><a href="#solutions" class="hover:text-brand-accent transition-colors">ทางออกธุรกิจ</a></li>
+                        <li><a href="#services" class="hover:text-brand-accent transition-colors">บริการของเรา</a></li>
+                        <li><a href="#calculator" class="hover:text-brand-accent transition-colors">คำนวณ ROI</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Legal & Policy -->
+                <div>
+                    <h4 class="text-white font-semibold mb-3 text-xs uppercase tracking-wider">นโยบายและการดูแล</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#" class="hover:text-brand-accent transition-colors">Privacy Policy (นโยบายความเป็นส่วนตัว)</a></li>
+                        <li><a href="#" class="hover:text-brand-accent transition-colors">Terms of Service (ข้อกำหนดการใช้งาน)</a></li>
+                        <li><a href="#" class="hover:text-brand-accent transition-colors">Security Overview</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Contact -->
+                <div>
+                    <h4 class="text-white font-semibold mb-3 text-xs uppercase tracking-wider">ติดต่อ Panlatec</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><i class="fa-solid fa-envelope mr-2 text-brand-accent"></i> contact@panlatec.com</li>
+                        <li><i class="fa-solid fa-phone mr-2 text-brand-accent"></i> 02-123-4567</li>
+                        <li><i class="fa-solid fa-location-dot mr-2 text-brand-accent"></i> กรุงเทพมหานคร, ประเทศไทย</li>
+                    </ul>
+                    <div class="flex gap-3 mt-4">
+                        <a href="#" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-cyan-500 hover:text-black transition-colors flex items-center justify-center text-slate-300">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-cyan-500 hover:text-black transition-colors flex items-center justify-center text-slate-300">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-cyan-500 hover:text-black transition-colors flex items-center justify-center text-slate-300">
+                            <i class="fa-brands fa-line"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-slate-800 text-center text-xs text-slate-500">
+                &copy; <span id="year"></span> Panlatec Co., Ltd. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Service Detail Modal -->
+    <div id="serviceModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+        <div class="glass-card max-w-lg w-full rounded-2xl p-6 sm:p-8 border border-slate-700 relative animate-scaleUp">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="modalContent">
+                <!-- Content inserted dynamically via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Form Success Notification Modal -->
+    <div id="successModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+        <div class="glass-card max-w-md w-full rounded-2xl p-8 border border-cyan-500/40 text-center space-y-4">
+            <div class="w-16 h-16 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-3xl mx-auto">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-white">รับข้อมูลสำเร็จแล้ว!</h3>
+            <p class="text-slate-300 text-sm">
+                ขอบคุณที่สนใจบริการของ Panlatec ทีมงานผู้เชี่ยวชาญจะติดต่อกลับตามเบอร์และอีเมลที่ให้ไว้ภายใน 24 ชั่วโมงครับ
+            </p>
+            <button onclick="closeSuccessModal()" class="w-full py-3 bg-gradient-to-r from-cyan-400 to-blue-500 font-bold text-black rounded-xl">
+                ตกลง
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('bg-brand-dark/90', 'backdrop-blur-md', 'shadow-lg', 'border-b', 'border-slate-800');
+            } else {
+                navbar.classList.remove('bg-brand-dark/90', 'backdrop-blur-md', 'shadow-lg', 'border-b', 'border-slate-800');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            } else {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+            }
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            });
+        });
+
+        // Interactive Services Modal Logic
+        const modalData = {
+            service1: {
+                title: 'Smart Automation System',
+                icon: 'fa-robot',
+                color: 'text-cyan-400',
+                desc: 'เปลี่ยนกระบวนการทำงานแบบใช้แรงงานมนุษย์ (Manual) มาเป็นระบบอัตโนมัติอัจฉริยะแบบ End-to-End',
+                bullets: [
+                    'RPA (Robotic Process Automation) จัดการงานเอกสาร บัญชี และคีย์ข้อมูล',
+                    'Workflow Automation เชื่อมโยงงานข้ามแผนกแบบไร้รอยต่อ',
+                    'แจ้งเตือนสถานะงานผ่าน LINE Official / Email ทันที'
+                ]
+            },
+            service2: {
+                title: 'Data & Analytics Dashboard',
+                icon: 'fa-chart-pie',
+                color: 'text-blue-400',
+                desc: 'เปลี่ยนข้อมูลธุรกิจที่กระจัดกระจาย ให้กลายเป็นขุมทรัพย์ในการตัดสินใจของผู้บริหาร',
+                bullets: [
+                    'รวมศูนย์ข้อมูลจาก ERP, CRM และ Sales Channels ในหน้าเดียว',
+                    'กราฟแสดงผล real-time รองรับทั้ง Mobile และ Desktop',
+                    'ระบบคาดการณ์แนวโน้ม (Predictive Insights) ด้วย AI'
+                ]
+            },
+            service3: {
+                title: 'Custom Software Development',
+                icon: 'fa-code',
+                color: 'text-purple-400',
+                desc: 'พัฒนาซอฟต์แวร์และแอปพลิเคชันเฉพาะทาง เพื่อแก้ปัญหาธุรกิจเฉพาะจุดของคุณอย่างตรงเป้า',
+                bullets: [
+                    'UX/UI Design ที่ใช้งานง่าย ออกแบบเฉพาะแบรนด์คุณ',
+                    'Scalable Architecture รองรับผู้ใช้งานจำนวนมากแบบปลอดภัย',
+                    'รองรับการขยายต่อเพิ่มเติมในอนาคตได้อย่างอิสระ'
+                ]
+            },
+            service4: {
+                title: 'Seamless Integration & Security',
+                icon: 'fa-shield-halved',
+                color: 'text-emerald-400',
+                desc: 'เชื่อมต่อระบบใหม่กับซอฟต์แวร์เดิม พร้อมยกระดับความปลอดภัยข้อมูลสูงสุด',
+                bullets: [
+                    'API Management เชื่อมต่อระบบบัญชี และ Payment Gateways',
+                    'มาตรฐานความปลอดภัยและการเข้ารหัสตามหลักสากล',
+                    'ระบบสารสนเทศตามมาตรฐาน PDPA / GDPR'
+                ]
+            }
+        };
+
+        function openModal(serviceKey) {
+            const data = modalData[serviceKey];
+            if (!data) return;
+
+            const modalContent = document.getElementById('modalContent');
+            modalContent.innerHTML = `
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center text-2xl ${data.color}">
+                        <i class="fa-solid ${data.icon}"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">${data.title}</h3>
+                </div>
+                <p class="text-slate-300 text-sm mb-4 leading-relaxed">${data.desc}</p>
+                <div class="space-y-2 mb-6">
+                    <h4 class="text-xs uppercase text-slate-400 font-semibold tracking-wider">จุดเด่นที่น่าสนใจ:</h4>
+                    <ul class="space-y-2">
+                        ${data.bullets.map(b => `<li class="text-sm text-slate-300 flex items-start gap-2"><i class="fa-solid fa-check text-cyan-400 mt-1 text-xs"></i><span>${b}</span></li>`).join('')}
+                    </ul>
+                </div>
+                <a href="#contact" onclick="closeModal()" class="block text-center w-full py-3 bg-gradient-to-r from-cyan-400 to-blue-500 font-bold text-black rounded-xl text-sm">
+                    สอบถามโซลูชันนี้เพิ่มเติม
+                </a>
+            `;
+
+            const modal = document.getElementById('serviceModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('serviceModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // ROI Calculator Logic
+        const empInput = document.getElementById('employee-count');
+        const hoursInput = document.getElementById('hours');
+        const salaryInput = document.getElementById('salary');
+
+        const empVal = document.getElementById('employee-count-val');
+        const hoursVal = document.getElementById('hours-val');
+        const salaryVal = document.getElementById('salary-val');
+
+        const savedHoursRes = document.getElementById('saved-hours-result');
+        const savedCostRes = document.getElementById('saved-cost-result');
+
+        function calculateROI() {
+            const employees = parseInt(empInput.value);
+            const hoursPerWeek = parseInt(hoursInput.value);
+            const monthlySalary = parseInt(salaryInput.value);
+
+            empVal.textContent = employees;
+            hoursVal.textContent = hoursPerWeek;
+            salaryVal.textContent = monthlySalary.toLocaleString();
+
+            // Estimated 70% efficiency boost in automation
+            const totalSavedHoursYearly = Math.round(employees * hoursPerWeek * 50 * 0.7);
+            
+            // Hourly rate = monthlySalary / 160 hours
+            const hourlyRate = monthlySalary / 160;
+            const totalCostSavedYearly = Math.round(totalSavedHoursYearly * hourlyRate);
+
+            savedHoursRes.textContent = totalSavedHoursYearly.toLocaleString();
+            savedCostRes.textContent = '฿' + totalCostSavedYearly.toLocaleString();
+        }
+
+        [empInput, hoursInput, salaryInput].forEach(input => {
+            input.addEventListener('input', calculateROI);
+        });
+
+        // Initialize ROI Calculator
+        calculateROI();
+
+        // Contact Form Handler
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            // Show Success Notification Modal
+            const successModal = document.getElementById('successModal');
+            successModal.classList.remove('hidden');
+            successModal.classList.add('flex');
+
+            // Reset form
+            document.getElementById('contactForm').reset();
+        }
+
+        function closeSuccessModal() {
+            const successModal = document.getElementById('successModal');
+            successModal.classList.add('hidden');
+            successModal.classList.remove('flex');
+        }
+
+        // Animated Number Counters on Scroll
+        const counters = document.querySelectorAll('.counter');
+        let animated = false;
+
+        window.addEventListener('scroll', () => {
+            const whyUsSection = document.getElementById('why-us');
+            if(!whyUsSection) return;
+            const sectionPos = whyUsSection.getBoundingClientRect().top;
+            const screenPos = window.innerHeight;
+
+            if (sectionPos < screenPos && !animated) {
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    let count = 0;
+                    const speed = target / 50;
+
+                    const updateCount = () => {
+                        count += speed;
+                        if (count < target) {
+                            counter.innerText = Math.ceil(count);
+                            setTimeout(updateCount, 30);
+                        } else {
+                            counter.innerText = target + '+';
+                        }
+                    };
+                    updateCount();
+                });
+                animated = true;
+            }
+        });
+    </script>
+</body>
+</html>
